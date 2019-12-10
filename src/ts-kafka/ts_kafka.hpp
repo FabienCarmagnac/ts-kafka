@@ -18,17 +18,18 @@ namespace tskafka
 		/* any failure returns {}. No exceptions */
 		static std::unique_ptr<producer> try_create(const std::string & endpoint, const std::string & topic);
 
-		/* get the last element produced OR the last element of the queue if the producer is idle */
-		void fetch_last(void *, size_t & n);
+		/* get the last element produced OR the last element of the queue if the producer is idle.
+		buffer must be large enough. if not, 'n' is impacted. */
+		void fetch_last(const char * buffer, size_t & n);
 		
-		enum push_flag
+		enum status 
 		{
 			ok,
 			busy, // the bus is occupied, try later. data not saved
 			connect_error,  // the bus is broken, drop and reconnect
 		};
 
-		push_flag push(tp ts, void * data, size_t size);
+		status push(tp ts, const char * data, size_t size);
 	};
 
 
@@ -50,7 +51,7 @@ namespace tskafka
 		static std::unique_ptr<consumer> try_create(const std::string & endpoint, const std::string & topic);
 
 		/* multiple call erase the previous one */		
-		void start(std::function<void(void *, size_t)> callback, tp startdate, tp enddate = tp::max());
+		void start(std::function<void(const char *, size_t)> callback, tp startdate, tp enddate = tp::max());
 		void stop();
 
 	};

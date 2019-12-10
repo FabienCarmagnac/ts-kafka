@@ -34,3 +34,16 @@
 /src/.vs/ts-kafka/v15/Browse.VC.db
 /src/.vs/ts-kafka/v15/Browse.VC.opendb
 /src/.vs/ts-kafka/v15/ipch/AutoPCH/e67575895c92eeaa/TS_KAFKA.ipch
+/src/packages/librdkafka.redist.1.3.0/.signature.p7s
+/src/packages/librdkafka.redist.1.3.0/build/librdkafka.redist.props
+/src/packages/librdkafka.redist.1.3.0/build/native/include/librdkafka/rdkafka.h
+/src/packages/librdkafka.redist.1.3.0/build/native/include/librdkafka/rdkafka_mock.h
+/src/packages/librdkafka.redist.1.3.0/build/native/include/librdkafka/rdkafkacpp.h
+/src/packages/librdkafka.redist.1.3.0/build/native/librdkafka.redist.targets
+/src/packages/librdkafka.redist.1.3.0/librdkafka.redist.1.3.0.nupkg
+/src/ts-kafka/.vs/ts-kafka/v15/.suo
+/src/ts-kafka/.vs/ts-kafka/v15/Browse.VC.db
+/src/ts-kafka/ts-kafka.vcxproj.user
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/ts-kafka.lastbuildstate
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/ts-kafka.write.1u.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.vcxproj.CopyComplete
