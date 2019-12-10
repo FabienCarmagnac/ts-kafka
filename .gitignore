@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+/src/.vs/ts-kafka/v15/.suo
+/src/.vs/ts-kafka/v15/Browse.VC.db
+/src/.vs/ts-kafka/v15/Browse.VC.opendb
+/src/.vs/ts-kafka/v15/ipch/AutoPCH/e67575895c92eeaa/TS_KAFKA.ipch
