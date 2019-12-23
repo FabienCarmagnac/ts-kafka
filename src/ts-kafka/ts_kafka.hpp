@@ -1,14 +1,23 @@
 #pragma once
 
 #include <chrono>
+#include <vector>
 #include <string>
 #include <functional>
 #include <librdkafka/rdkafkacpp.h>
 
-typedef std::chrono::system_clock::time_point tp;
 
-namespace tskafka
+namespace ts_kafka
 {
+	typedef std::chrono::system_clock::time_point tp;
+
+	struct timed_data
+	{
+		tp ts;// time of the object
+		std::vector<char> buffer;
+
+	};
+
 	class producer
 	{
 	public:
@@ -20,7 +29,7 @@ namespace tskafka
 
 		/* get the last element produced OR the last element of the queue if the producer is idle.
 		buffer must be large enough. if not, 'n' is impacted. */
-		void fetch_last(const char * buffer, size_t & n);
+		void fetch_last(timed_data & data);
 		
 		enum status 
 		{
@@ -29,7 +38,7 @@ namespace tskafka
 			connect_error,  // the bus is broken, drop and reconnect
 		};
 
-		status push(tp ts, const char * data, size_t size);
+		status push(const timed_data & data);
 	};
 
 
@@ -50,8 +59,8 @@ namespace tskafka
 		/* any failure returns {}. No exceptions */
 		static std::unique_ptr<consumer> try_create(const std::string & endpoint, const std::string & topic);
 
-		/* multiple call erase the previous one */		
-		void start(std::function<void(const char *, size_t)> callback, tp startdate, tp enddate = tp::max());
+		/* multiple call erase the previous one. when callback is invoke with null ptr, end of topic */		
+		void start(std::function<void(const timed_data &)> callback, tp startdate, tp enddate = tp::max());
 		void stop();
 
 	};
