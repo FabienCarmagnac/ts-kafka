@@ -22,10 +22,12 @@ The consumer uses this X-index topic to retrieve the offset from which the notif
 ### DONE
 
   * first draft of headers : consumer and producer
-  * simple test compiling : one producer 
+  * simple test compiling : one producer writes the timestamp pushed and the index of the message. The consumer verifies the notification time of the enngine is the same than the timestamp inside the payload message and its index.
   
-
 ### TODO
 
   * build a kafka sandbox
   
+### Remark
+
+This will be a fu**** awesome lib.
