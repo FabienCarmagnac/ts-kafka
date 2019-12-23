@@ -3,9 +3,8 @@ timeseries c++ lib for kafka, based on [librdkafka](https://github.com/edenhill/
 
 ### Use case
 
-A process using time-indexed data (timeseries) sometimes need to read a stream of temporal data from some past date till now, and then continue to receive the new data feeded by some real-time producer.
+A consumer process using time-indexed data (timeseries) sometimes need to read a stream of temporal data from some past date till now, and then continue to receive the new data feeded by some real-time producer. With ts-kakfa, the transition from historical to real time is transparent.
 
-The goal of this lib is to reconciliate the 2 behaviours (consumer and producer).
 
 ### Implem 
 
