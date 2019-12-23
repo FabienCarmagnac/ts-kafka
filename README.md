@@ -13,3 +13,10 @@ Each X topic has an index topic named X-index which stores `<timestamps, offset>
 The producer stores regulary in X-index topic a `<timestamps, offset>` element.
 The consumer uses this X-index topic to retrieve the offset from which the notification should start.
 
+### Platform
+
+  * win x64
+  * linux x64
+  
+  
+  
