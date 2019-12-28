@@ -19,7 +19,7 @@ ts-kafka handles this for you.
 #### Recent past for consumer
 
 From a consumer point of view, subscribing to timed-labeled data usually comes with the need of recent past.
-ts-kafka consumer provides historical data in a transparent than the real-time one.
+ts-kafka consumer can provide historical data the same way than its notifies new data updates. 
 
 ### Platform
 
