@@ -7,7 +7,7 @@ timeseries c++ lib for kafka, as a [librdkafka](https://github.com/edenhill/libr
 
 A consumer process using time-indexed data (timeseries) sometimes need to read a stream of temporal data from some past date till now, and then continue to receive the new data feeded by some real-time producer. With ts-kakfa, the transition from historical to real time is transparent.
 
-### Where comes real-life problem(s) ...
+### Where come real-life problems ...
 
 #### Init problem
 
@@ -19,7 +19,7 @@ ts-kafka handles this for you.
 #### Recent past for consumer
 
 From a consumer point of view, subscribing to timed-labeled data usually comes with the need of recent past.
-ts-kafka consumer can provide historical data the same way than its notifies new data updates. 
+ts-kafka consumer can provide historical data the same way than its notifies new data updates. This historical data can be request by past dates or number of elements.
 
 ### Platform
 
@@ -29,7 +29,7 @@ ts-kafka consumer can provide historical data the same way than its notifies new
 ### DONE
 
   * first draft of headers : consumer and producer
-  * simple test compiling : one producer writes the timestamp pushed and the index of the message. The consumer verifies the notification time of the enngine is the same than the timestamp inside the payload message and its index.
+  * simple test compiling : 1 real-time producer writes the timestamp pushed and the index of the message. The consumer verifies the notification time of the enngine is the same than the timestamp inside the payload message and its index.
   * build a kafka sandbox
 
 ### TODO
