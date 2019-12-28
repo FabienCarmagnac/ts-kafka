@@ -90,7 +90,15 @@ int main()
 			{
 				report_error("times are not sync", 14);
 			}
-			// 
+
+			if (td.ts < start)
+			{
+				report_error("data before start", 15);
+			}
+			if (end < td.ts)
+			{
+				report_error("data after end ", 16);
+			}
 
 
 		}, start, end);
