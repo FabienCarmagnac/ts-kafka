@@ -31,7 +31,7 @@ int main()
 
 	thread produce_th([=] 
 	{
-		auto p0 = producer::try_create(endpoint, topic);
+		auto p0 = rt_producer::try_create(endpoint, topic);
 		if(!p0)
 			report_error("cant create producer", 10);
 
@@ -48,13 +48,13 @@ int main()
 
 			int e = p0->push(td);
 
-			if (e == producer::busy) // busy, retry in a few ms
+			if (e == producer_status::busy) // busy, retry in a few ms
 			{
 				this_thread::sleep_for(chrono::milliseconds(100));
 				continue;
 			}
 
-			if (e == producer::connect_error) //ko : bye
+			if (e == producer_status::connect_error) //ko : bye
 			{
 				report_error("connect/internal error, exiting", 11);
 			}

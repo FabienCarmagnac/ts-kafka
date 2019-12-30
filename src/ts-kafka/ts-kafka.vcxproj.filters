@@ -3,7 +3,4 @@
   <ItemGroup>
     <ClInclude Include="ts_kafka.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>
