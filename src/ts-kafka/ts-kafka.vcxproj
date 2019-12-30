@@ -66,6 +66,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="circular_buffer.hpp" />
+    <ClInclude Include="consumer.hpp" />
+    <ClInclude Include="defs.hpp" />
+    <ClInclude Include="producer.hpp" />
     <ClInclude Include="ts_kafka.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
