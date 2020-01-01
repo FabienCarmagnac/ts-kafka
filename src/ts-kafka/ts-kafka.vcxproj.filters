@@ -4,7 +4,12 @@
     <ClInclude Include="ts_kafka.hpp" />
     <ClInclude Include="defs.hpp" />
     <ClInclude Include="circular_buffer.hpp" />
-    <ClInclude Include="consumer.hpp" />
-    <ClInclude Include="producer.hpp" />
+    <ClInclude Include="ts_consumer.hpp" />
+    <ClInclude Include="include_rdkafka.h" />
+    <ClInclude Include="ts_producer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ts_consumer.cpp" />
+    <ClCompile Include="ts_producer.cpp" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,6 @@
 #pragma once
 
-#include <rdkafkacpp.h>
-
-#include <ts-kafka/defs.hpp>
+#include "ts-kafka/include_rdkafka.h"
 
 namespace ts_kafka
 {

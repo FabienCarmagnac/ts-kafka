@@ -69,3 +69,16 @@
 /src/.vs/ts-kafka/v15/Solution.VC.db
 /src/.vs/ts-kafka/v15/Solution.VC.db-shm
 /src/.vs/ts-kafka/v15/Solution.VC.db-wal
+/src/.vs/ts-kafka/v15/ipch/AutoPCH/23a6c2286744d66a/CONSUMER.ipch
+/src/.vs/ts-kafka/v15/ipch/AutoPCH/54d51c135dc3c5fc/TS_PRODUCER.ipch
+/src/.vs/ts-kafka/v15/ipch/AutoPCH/92ae3f464f95fdf/TS_PRODUCER.ipch
+/src/.vs/ts-kafka/v15/ipch/AutoPCH/97b2d34855a3c849/TS_CONSUMER.ipch
+/src/ts-kafka/x64/Debug/ts-kafka.idb
+/src/ts-kafka/x64/Debug/ts-kafka.pdb
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/CL.command.1.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/CL.read.1.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/CL.write.1.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/Lib.command.1.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/Lib-link.read.1.tlog
+/src/ts-kafka/x64/Debug/ts-kafka.tlog/Lib-link.write.1.tlog
+/src/x64/Debug/ts-kafka.pdb

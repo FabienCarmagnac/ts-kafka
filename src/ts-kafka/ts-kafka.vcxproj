@@ -49,6 +49,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -59,6 +60,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -67,10 +69,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="circular_buffer.hpp" />
-    <ClInclude Include="consumer.hpp" />
+    <ClInclude Include="include_rdkafka.h" />
+    <ClInclude Include="ts_consumer.hpp" />
     <ClInclude Include="defs.hpp" />
-    <ClInclude Include="producer.hpp" />
+    <ClInclude Include="ts_producer.hpp" />
     <ClInclude Include="ts_kafka.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ts_consumer.cpp" />
+    <ClCompile Include="ts_producer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
