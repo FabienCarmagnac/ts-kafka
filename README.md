@@ -56,8 +56,8 @@ Storage calls can be sync or async.
 This class knows the timestamp of last record.
 
 On start, we assume a ts_producer_rt has a very recent block of historical data available.
-If the last date of topic T < first date of recent block, the producer will write the data in a T-head topic, not T.
-This producer uses a consumer to detect the changes on topic T. 
+If the last date of topic T < first date of recent block, the producer will write the data in a T-head topic, not T. This way it avoids 'holes' in the T main topic.
+This producer uses a basic_consumer to detect the changes on topic T. 
 When the last date of topic T >= first date of recent block, the producer will transfert the data from T-head to T and then, do not write anymore to T-head but directly to T.
 
 Only one instance of ts_producer_rt should be runned on a topic at a time.
