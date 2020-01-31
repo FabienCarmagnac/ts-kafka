@@ -52,7 +52,13 @@ This class stores the data without timestamp ordering control.
 
 ### ts_producer_rt
 
-This class stores the real-time (rt) data .
+This class stores the real-time (rt) data.
+Storage calls can be sync or async.
+This producer keeps the last record date even immediatly after construction.
+
+### ts_producer_histo
+
+This class is used to load in kafka the first snapshot, typically offline.
 
 
 ### Optimizarion to be done 
