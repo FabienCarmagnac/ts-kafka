@@ -1,7 +1,7 @@
 # ts-kafka
 timeseries c++ lib for kafka, as a [librdkafka](https://github.com/edenhill/librdkafka) wrapper.
 
-# State of the project : PRE-ALPHA
+# State of the project : DRAFT !!! DO NOT USE IT YET !!!
 
 ### Use case
 
@@ -34,5 +34,29 @@ ts-kafka consumer can provide historical data the same way than its notifies new
 
 ### TODO
 
+## Draft spec
 
+### Data
+
+The data is represented by a binary block (as std::vector<char>) + a utc timestamp.
+
+### basic_consumer
+
+This class consumes data from a topic, between 2 dates.
+A blocking `stop()`  method halts the notification in a async way.
+The seek of the start target date is done by dichotomy.
+
+### basic_producer
+
+This class stores the data without timestamp ordering control.
+
+### ts_producer_rt
+
+This class stores the real-time (rt) data .
+
+
+### Optimizarion to be done 
+
+ - allocator for message 
+ 
   
