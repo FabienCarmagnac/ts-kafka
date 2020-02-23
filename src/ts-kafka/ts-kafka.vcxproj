@@ -14,19 +14,19 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{08D44797-6B57-4A92-AF1C-D36A168A7BB4}</ProjectGuid>
     <RootNamespace>tskafka</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -69,15 +69,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="circular_buffer.hpp" />
+    <ClInclude Include="event_cb.h" />
     <ClInclude Include="include_rdkafka.h" />
-    <ClInclude Include="ts_consumer.hpp" />
+    <ClInclude Include="basic_consumer.hpp" />
     <ClInclude Include="defs.hpp" />
-    <ClInclude Include="ts_producer.hpp" />
+    <ClInclude Include="basic_producer.hpp" />
     <ClInclude Include="ts_kafka.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ts_consumer.cpp" />
-    <ClCompile Include="ts_producer.cpp" />
+    <ClCompile Include="basic_consumer.cpp" />
+    <ClCompile Include="basic_producer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

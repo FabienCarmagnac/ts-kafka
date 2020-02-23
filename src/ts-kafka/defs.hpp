@@ -5,9 +5,13 @@
 #include <string>
 #include <map>
 #include <functional>
+#include <thread>
+#include <random>
 
 namespace ts_kafka
 {
+
+
 
 	struct def_arg
 	{
