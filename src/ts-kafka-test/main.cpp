@@ -10,16 +10,28 @@
 #pragma comment(lib,"gtest.lib")
 #pragma comment(lib,"rdkafka++.lib")
 
-std::string global_test_endpoint;
-std::string global_test_user;
-std::string global_test_passwd;
-std::string global_test_topic="test_topic";
-
 using namespace ts_kafka;
+using namespace std;
+
+string global_test_endpoint;
+string global_test_user;
+string global_test_passwd;
+string global_test_topic="test_topic";
+
 
 
 int main(int argc, char** argv) 
 {
+    global_test_endpoint = argv[1];
+    global_test_user = argv[2];
+    global_test_passwd = argv[3];
+    global_test_topic = argv[4];
+
+    if (global_test_topic.empty())
+    {
+        cout << "topic is empty\n";
+        return 0;
+    }
 
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
@@ -44,10 +56,12 @@ void start_basic_cons_thread(int key, int nb_expected, basic_consumer & bc)
         args.user = global_test_user;
         args.passwd = global_test_passwd;
 
-        std::string err;
-        int ix;
+        string err;
+        int ix=0;
         bool s = bc.start(args, [&](tp t, const char* d, size_t sz)
         {
+            cout << "received object " << endl;
+
             int_2 * tmp = (int_2*)d;
             if (tmp->key != key)
                 return;
@@ -61,6 +75,7 @@ void start_basic_cons_thread(int key, int nb_expected, basic_consumer & bc)
         bc.wait();
 
         EXPECT_TRUE(s);
+        EXPECT_EQ(nb_expected, ix);
     }
 }
 
@@ -77,10 +92,12 @@ void start_basic_prod_thread(int key, int nb_expected)
         args.endpoint = global_test_endpoint;
         args.topic = global_test_topic;
 
-        std::string err;
+        string err;
+        cout << "connecting ..." << endl;
+
         if (!bc.connect(args, err))
         {
-            std::cerr << err << std::endl;
+            cerr << "CANT CONNECT ! Details : " << err << endl;
             EXPECT_TRUE(false);
         }
 
@@ -92,12 +109,14 @@ void start_basic_prod_thread(int key, int nb_expected)
         i2->key = key;
         while (i++ < nb_expected)
         {
+            cout << "pushing " << i << endl;
             i2->ix = i-1;
             rd.ts = now();
             EXPECT_EQ(bc.push(rd), producer_status::ok);
 
         }
 
+        cout << "end prod" << endl;
         EXPECT_EQ(i, nb_expected);
     }
 
@@ -109,18 +128,27 @@ void start_basic_prod_thread(int key, int nb_expected)
 
 TEST(prod_cons, basic) 
 {
+
     int key = rand();
-    
+    cout << "key=" << key << endl;
+
     int nbexpected = 10;
     basic_consumer bc;
 
-    std::thread co(start_basic_cons_thread, key, nbexpected, std::ref(bc));
-    std::thread pr(start_basic_prod_thread, key, nbexpected);
+    cout << "starting thread cons" << endl;
+    thread co(start_basic_cons_thread, key, nbexpected, ref(bc));
+
+    cout << "starting thread prod" << endl;
+    thread pr(start_basic_prod_thread, key, nbexpected);
+
 
     pr.join();
+    cout << "thread prod joined" << endl;
     bc.stop();
+    cout << "consumer stopped" << endl;
 
     co.join();
-    
+    cout << "thread cons joined" << endl;
+
     
 }
