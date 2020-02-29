@@ -17,11 +17,18 @@ namespace ts_kafka
 	{
 		std::string endpoint;
 		std::string topic;
+		std::string user;
+		std::string passwd;
+
 		std::map<std::string, std::string> params;
 	};
 	
 	typedef std::chrono::system_clock::time_point tp;
 
+	inline tp now()
+	{
+		return std::chrono::system_clock::now();
+	}
 	constexpr int64_t to_kafka_ts(tp t)
 	{
 		return std::chrono::duration_cast<std::chrono::milliseconds>(t - tp()).count();

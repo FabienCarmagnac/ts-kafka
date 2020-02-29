@@ -5,22 +5,33 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ts-kafka", "ts-kafka\ts-kafka.vcxproj", "{08D44797-6B57-4A92-AF1C-D36A168A7BB4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ts-kafka-test", "ts-kafka-test\ts-kafka-test.vcxproj", "{A7E07379-20BF-41EB-AEF6-41D10E2FD1AF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ts-kafka-test", "ts-kafka-test\ts-kafka-test.vcxproj", "{4B2DB754-AA08-4279-8F8E-B80E02CD8306}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08D44797-6B57-4A92-AF1C-D36A168A7BB4} = {08D44797-6B57-4A92-AF1C-D36A168A7BB4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Debug|x64.ActiveCfg = Debug|x64
 		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Debug|x64.Build.0 = Debug|x64
+		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Debug|x86.ActiveCfg = Debug|x64
 		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Release|x64.ActiveCfg = Release|x64
 		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Release|x64.Build.0 = Release|x64
-		{A7E07379-20BF-41EB-AEF6-41D10E2FD1AF}.Debug|x64.ActiveCfg = Debug|x64
-		{A7E07379-20BF-41EB-AEF6-41D10E2FD1AF}.Debug|x64.Build.0 = Debug|x64
-		{A7E07379-20BF-41EB-AEF6-41D10E2FD1AF}.Release|x64.ActiveCfg = Release|x64
-		{A7E07379-20BF-41EB-AEF6-41D10E2FD1AF}.Release|x64.Build.0 = Release|x64
+		{08D44797-6B57-4A92-AF1C-D36A168A7BB4}.Release|x86.ActiveCfg = Release|x64
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Debug|x64.ActiveCfg = Debug|x64
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Debug|x64.Build.0 = Debug|x64
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Debug|x86.ActiveCfg = Debug|Win32
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Debug|x86.Build.0 = Debug|Win32
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Release|x64.ActiveCfg = Release|x64
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Release|x64.Build.0 = Release|x64
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Release|x86.ActiveCfg = Release|Win32
+		{4B2DB754-AA08-4279-8F8E-B80E02CD8306}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

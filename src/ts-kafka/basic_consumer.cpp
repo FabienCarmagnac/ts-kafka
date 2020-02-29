@@ -6,7 +6,7 @@
 
 namespace ts_kafka
 {
-	/*void basic_consumer::rb_cb::rebalance_cb(RdKafka::KafkaConsumer *consumer, RdKafka::ErrorCode err, std::vector<RdKafka::TopicPartition*>&partitions)
+	void basic_consumer::rb_cb::rebalance_cb(RdKafka::KafkaConsumer *consumer, RdKafka::ErrorCode err, std::vector<RdKafka::TopicPartition*>&partitions)
 	{
 
 		if (err == RdKafka::ERR__ASSIGN_PARTITIONS)
@@ -29,9 +29,9 @@ namespace ts_kafka
 
 			consumer->assign(partitions);
 		}
-	}*/
+	}
 
-	//basic_consumer::rb_cb::~rb_cb() {}
+	basic_consumer::rb_cb::~rb_cb() {}
 
 	basic_consumer::basic_consumer()
 	{
@@ -41,6 +41,8 @@ namespace ts_kafka
 	{
 		stop();
 	}
+
+#if 0
 
 	/*bool basic_consumer::try_get_last(const def_arg & d, timed_data<std::vector<char>> & ret, std::string & errstr)
 	{
@@ -129,6 +131,16 @@ namespace ts_kafka
 		return true;
 	}*/
 
+#endif // 0
+
+
+	void basic_consumer::wait()
+	{
+		std::unique_lock<std::mutex> l(_mx);
+		while(!_stop)
+			_cv.wait(l);
+	}
+
 	bool basic_consumer::pre_start(const consumer_start_args& sa, std::string & errstr)
 	{
 		std::unique_ptr<RdKafka::Conf> gconf(RdKafka::Conf::create(RdKafka::Conf::CONF_GLOBAL));
@@ -139,8 +151,8 @@ namespace ts_kafka
 		if (gconf->set("group.id", std::to_string(rand()), errstr) != RdKafka::Conf::CONF_OK)
 			return false;
 
-		/*if (conf->set("rebalance_cb", &_rb_cb, errstr) != RdKafka::Conf::CONF_OK)
-			return false;*/
+		if (gconf->set("rebalance_cb", &_rb_cb, errstr) != RdKafka::Conf::CONF_OK)
+			return false;
 
 		for (auto & kv : sa.params)
 		{
@@ -171,6 +183,9 @@ namespace ts_kafka
 			return;
 
 		_stop = true;
+		
+		_cv.notify_all();
+
 		_consumer->stop(_topic.get(), 0);
 		_th.join();
 		_queue.reset();
@@ -181,6 +196,7 @@ namespace ts_kafka
 
 
 	#if 0
+
 	struct start_args
 		{
 			tp historical_startdate_storage = tp::max();

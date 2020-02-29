@@ -8,6 +8,7 @@
 #include <thread>
 #include <map>
 #include <atomic>
+#include <future>
 
 namespace ts_kafka
 {
@@ -32,6 +33,8 @@ namespace ts_kafka
 		template < class callback_t >
 		bool start(const consumer_start_args&, callback_t callback, std::string & errstr);
 
+		void wait();
+
 		void stop();
 
 	/*	static bool try_get_at_offset(const def_arg & d, int requested_offset, timed_data<std::vector<char>> & ret, std::string & errstr);
@@ -39,25 +42,28 @@ namespace ts_kafka
 		static bool try_get_all(const def_arg & d, std::vector<timed_data<std::vector<char>>> & ret, std::string & errstr);*/
 
 		// value fixed while rebalancing. 
-		int64_t get_max_offset()const;
+		const std::future<int64_t>& get_max_offset()const;
 
 	private:
 
-	/*	class rb_cb : public RdKafka::RebalanceCb
+		class rb_cb : public RdKafka::RebalanceCb
 		{
 		public:
 			std::atomic_int64_t user_requested_offset;
-			std::atomic_int64_t max_offset=0;
+			std::atomic_int64_t max_offset;
 			virtual void rebalance_cb(RdKafka::KafkaConsumer *consumer, RdKafka::ErrorCode err, std::vector<RdKafka::TopicPartition*>&partitions);
 			virtual ~rb_cb();
 		};
-		*/
+	
 		std::atomic_bool _stop = false;
 		std::thread _th;
-		//rb_cb _rb_cb;
+		rb_cb _rb_cb;
 		std::unique_ptr<RdKafka::Consumer> _consumer;
 		std::unique_ptr<RdKafka::Topic> _topic;
 		std::unique_ptr<RdKafka::Queue> _queue;
+
+		std::condition_variable _cv;
+		std::mutex _mx;
 
 		template < class callback_t >
 		void do_read(int bk_ms, callback_t i);
@@ -70,7 +76,7 @@ namespace ts_kafka
 	{
 		if (!pre_start(sa, errstr))
 			return false;
-
+	
 		_th = std::thread(&basic_consumer::do_read<callback_t>, this, sa.consume_block_time_ms, inserter);
 		return true;
 	}
@@ -94,6 +100,9 @@ namespace ts_kafka
 			//msg->timestamp
 			delete msg;
 		}
+
+		_cv.notify_all();
+
 	}
 #if 0
 
